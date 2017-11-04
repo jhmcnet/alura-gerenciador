@@ -31,14 +31,18 @@ public class FiltroDeAuditoria implements Filter{
 		Cookie cookie = new Cookies(req.getCookies()).getUsuarioLogado();
 
 		String usuario = "<deslogado>";
+		System.out.println("Inicio");
 		
 		if(cookie!=null){
 			usuario = cookie.getValue();
 			cookie.setMaxAge(60*10);
 			resp.addCookie(cookie);
+			System.out.println("Cookie OK");
+		}else{
+			System.out.println("Cookie Nulo");
 		}
 		
-		System.out.println("Usuario " + usuario + "acessando a URI " + req.getRequestURI());
+		System.out.println("Usuario " + usuario + " acessando a URI Teste" + req.getRequestURI());
 		chain.doFilter(request, response);
 		
 	}

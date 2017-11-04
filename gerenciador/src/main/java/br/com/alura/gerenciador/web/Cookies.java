@@ -9,8 +9,7 @@ public class Cookies {
 	public Cookies(Cookie[] cookies){
 		this.cookies = cookies;
 		
-	}
-	
+	}	
 	
 	public Cookie getUsuarioLogado(){
 		

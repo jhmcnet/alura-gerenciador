@@ -30,6 +30,7 @@ public class Login extends HttpServlet{
 		}else{
 			writer.println("<html><body>Usuário "+usuario.getEmail()+" logado!</body></html>");
 			Cookie cookie = new Cookie("usuario.logado",usuario.getEmail());
+			resp.addCookie(cookie);
 			
 		}
 		
