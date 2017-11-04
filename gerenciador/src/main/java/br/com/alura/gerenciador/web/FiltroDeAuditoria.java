@@ -42,7 +42,7 @@ public class FiltroDeAuditoria implements Filter{
 			System.out.println("Cookie Nulo");
 		}
 		
-		System.out.println("Usuario " + usuario + " acessando a URI Teste" + req.getRequestURI());
+		System.out.println("Usuario " + usuario + " ACESSANDO a URI Teste" + req.getRequestURI());
 		chain.doFilter(request, response);
 		
 	}
