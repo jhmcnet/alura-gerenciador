@@ -9,6 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.alura.gerenciador.Usuario;
 import br.com.alura.gerenciador.dao.UsuarioDAO;
@@ -28,9 +29,14 @@ public class Login extends HttpServlet{
 		if(usuario == null){
 			writer.println("<html><body>Usuário ou senha inválidos</body></html>");
 		}else{
-			writer.println("<html><body>Usuário "+usuario.getEmail()+" logado!</body></html>");
-			Cookie cookie = new Cookie("usuario.logado",usuario.getEmail());
-			resp.addCookie(cookie);
+			
+			//Cookie cookie = new Cookie("usuario.logado",usuario.getEmail());
+			//resp.addCookie(cookie);
+			
+			HttpSession session = req.getSession();
+			session.setAttribute("usuario.logado", usuario);
+			writer.println("<html><body>Usuário "+ usuario.getEmail()+" logado com sucesso!</body></html>");
+			
 			
 		}
 		

@@ -12,6 +12,9 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import br.com.alura.gerenciador.Usuario;
 
 @WebFilter(urlPatterns="/*")
 public class FiltroDeAuditoria implements Filter{
@@ -28,21 +31,21 @@ public class FiltroDeAuditoria implements Filter{
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		
-		Cookie cookie = new Cookies(req.getCookies()).getUsuarioLogado();
-
+		//Cookie cookie = new Cookies(req.getCookies()).getUsuarioLogado();
+		HttpSession session = req.getSession();
 		String usuario = "<deslogado>";
-		System.out.println("Inicio");
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuario.logado");
 		
-		if(cookie!=null){
-			usuario = cookie.getValue();
-			cookie.setMaxAge(60*10);
-			resp.addCookie(cookie);
-			System.out.println("Cookie OK");
+		if(usuarioLogado!=null){
+			usuario = usuarioLogado.getEmail();
+			//cookie.setMaxAge(60*10);
+			//resp.addCookie(cookie);
+			System.out.println("Usuario OK");
 		}else{
-			System.out.println("Cookie Nulo");
+			System.out.println("Usuario Nulo");
 		}
 		
-		System.out.println("Usuario " + usuario + " ACESSANDO a URI Teste" + req.getRequestURI());
+		System.out.println("Usuario " + usuario + " acessando a URI " + req.getRequestURI());
 		chain.doFilter(request, response);
 		
 	}
