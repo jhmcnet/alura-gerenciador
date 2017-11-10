@@ -34,7 +34,7 @@ public class FiltroDeAuditoria implements Filter{
 		//Cookie cookie = new Cookies(req.getCookies()).getUsuarioLogado();
 		HttpSession session = req.getSession();
 		String usuario = "<deslogado>";
-		Usuario usuarioLogado = (Usuario) session.getAttribute("usuario.logado");
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 		
 		if(usuarioLogado!=null){
 			usuario = usuarioLogado.getEmail();

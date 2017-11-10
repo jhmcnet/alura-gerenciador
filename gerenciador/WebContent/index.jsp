@@ -1,6 +1,7 @@
 <html>
 <body>
 <h1>Bem vindo ao nosso GERENCIADOR de empresas!<br/></h1>
+${usuarioLogado.email}
 <h2>Nova Empresa</h2>
 <form action="nova" method="POST">
 Nome da empresa:<input type="text" name="nome">

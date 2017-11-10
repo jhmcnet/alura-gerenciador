@@ -22,7 +22,8 @@ public class Logout extends HttpServlet{
 		//cookie.setMaxAge(0);
 		//resp.addCookie(cookie);
 		HttpSession session = req.getSession();
-		session.invalidate();
+		session.removeAttribute("usuarioLogado");
+		// Destroi a sessão por completo => session.invalidate();
 		//PrintWriter writer = resp.getWriter();
 		//writer.println("<body><html>Logout Realizado!</body></html>");
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/paginas/logout.html");
