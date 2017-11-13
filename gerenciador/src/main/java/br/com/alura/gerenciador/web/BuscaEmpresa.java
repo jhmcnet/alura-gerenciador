@@ -11,17 +11,15 @@ import br.com.alura.gerenciador.dao.EmpresaDAO;
 
 @WebServlet(urlPatterns="/busca")
 public class BuscaEmpresa implements Tarefa{
-	
-
 
 	@Override
 	public String executa(HttpServletRequest req, HttpServletResponse resp) {
+		
 		String filtro = req.getParameter("filtro");		
 		Collection<Empresa> empresas = new EmpresaDAO().buscaPorSimilaridade(filtro);
 		req.setAttribute("empresas", empresas);
 		return "WEB-INF/paginas/buscaEmpresa.jsp";
-		//requestDispatcher.forward(req, resp);
+
 	}
 	
-
 }

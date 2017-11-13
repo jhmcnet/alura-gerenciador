@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet(urlPatterns="/executa")
-public class Executa extends HttpServlet{
+public class Controller extends HttpServlet{
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,7 +22,7 @@ public class Executa extends HttpServlet{
 			throw new IllegalArgumentException("Tarefa não informada");
 		}else{
 			try {
-			String nomedaClasse = "br.com.alura.gerenciado.web."+tarefa;
+			String nomedaClasse = "br.com.alura.gerenciador.web."+tarefa;
 			Class<?> type = Class.forName(nomedaClasse);			
 			Tarefa instancia = (Tarefa) type.newInstance();			
 			String pagina = instancia.executa(req, resp);

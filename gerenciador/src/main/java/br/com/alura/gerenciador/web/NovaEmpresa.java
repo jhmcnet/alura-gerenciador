@@ -1,12 +1,6 @@
 package br.com.alura.gerenciador.web;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,23 +8,15 @@ import br.com.alura.gerenciador.Empresa;
 import br.com.alura.gerenciador.dao.EmpresaDAO;
 
 @WebServlet(urlPatterns = "/nova")
-public class NovaEmpresa extends HttpServlet{
+public class NovaEmpresa implements Tarefa{
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-		String nome = req.getParameter("nome");
-		
+	public String executa(HttpServletRequest req, HttpServletResponse resp) {
+		String nome = req.getParameter("nome");		
 		Empresa empresa= new Empresa(nome);
 		new EmpresaDAO().adiciona(empresa);
-		PrintWriter writer = resp.getWriter();
-		//writer.println("<html><body>Empresa: "+empresa.getNome()+" adicionada com sucesso!</br>");
-		//writer.println("<a href=/gerenciador>Voltar</a></br>");
-		//writer.println("<a href=/gerenciador/busca>Listar Todas</a>");
 		req.setAttribute("nome", empresa);
-		
-		RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/paginas/novaEmpresa.jsp");
-		requestDispatcher.forward(req, resp);
+		return "WEB-INF/paginas/novaEmpresa.jsp";
 	}
 
 }

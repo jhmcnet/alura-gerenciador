@@ -4,14 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Nova Empresa</title>
+<title>Falha No Login</title>
 </head>
 <body>
-<h2>Nova empresa ${nome.getNome()} adicionada!</h2></br></br>
-
-<a href=/gerenciador>Voltar</a></br>
-<a href="executa?tarefa=BuscaEmpresa">Listar Todas</a>
-
-
+Usuário ou senha incorreto!
 </body>
 </html>

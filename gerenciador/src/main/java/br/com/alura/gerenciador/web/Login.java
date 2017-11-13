@@ -15,30 +15,27 @@ import br.com.alura.gerenciador.Usuario;
 import br.com.alura.gerenciador.dao.UsuarioDAO;
 
 @WebServlet(urlPatterns="/login")
-public class Login extends HttpServlet{
+public class Login implements Tarefa{
 	
+
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		PrintWriter writer = resp.getWriter();
+	public String executa(HttpServletRequest req, HttpServletResponse resp) {
 		String email = req.getParameter("email");
 		String senha = req.getParameter("senha");
-		
 		Usuario usuario = new UsuarioDAO().buscaPorEmailESenha(email, senha);
+		String pagina;
+		
 		
 		if(usuario == null){
-			writer.println("<html><body>Usuário ou senha inválidos</body></html>");
+			pagina = "/WEB-INF/paginas/falhaNoLogin.jsp";
 		}else{
-			
-			//Cookie cookie = new Cookie("usuario.logado",usuario.getEmail());
-			//resp.addCookie(cookie);
-			
+						
 			HttpSession session = req.getSession();
 			session.setAttribute("usuarioLogado", usuario);
-			writer.println("<html><body>Usuário "+ usuario.getEmail()+" logado com sucesso!</body></html>");
+			pagina = "/WEB-INF/paginas/sucessoNoLogin.jsp";					
 			
-			
-		}
+		}		
+		return pagina;
 		
 	}
 
